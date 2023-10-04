@@ -9,10 +9,11 @@
 // System.debug('Hello World!');
 // System.debug('My name is ' + tempvar);
 
-
-
 // System.debug('My name is ' + Vehicles.getVehicles());
 // Vehicles.persistPurchase('a008b00001f5OZyAAM');
 
-System.debug(ConsultaCEPController.consultarCEP('01001000'));
+//System.debug(ConsultaCEPController.consultarCEP('01001000'));
+CPFUtil cpfUtil = new CPFUtil();
+cpfUtil.isValidCPF('12345678910');
+ System.debug('Digito 2: ' + cpfUtil.mensagem);
 

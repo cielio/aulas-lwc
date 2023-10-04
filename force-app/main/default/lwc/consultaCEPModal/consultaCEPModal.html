@@ -6,8 +6,11 @@
       <div class="slds-col slds-size_1-of-2 slds-p-horizontal_x-small">
         <lightning-input
           label="CEP"
-          type="search"
-          onchange={handleCEP}
+          
+          pattern="^\d{3}\$"
+          message-when-pattern-mismatch="Not a valid phone number"
+          message-when-value-missing="Phone number is required"
+          onchange={handlePhoneInputMask}
           placeholder="00000000"
         ></lightning-input>
       </div>

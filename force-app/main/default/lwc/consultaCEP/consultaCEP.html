@@ -6,10 +6,101 @@
           variant="brand"
           label="Buscar endereço por CEP"
           title="Buscar endereço por CEP"
-          onclick={handleClick}
+          onclick={openModal}
           class="slds-m-left_x-small"
         ></lightning-button>
       </div>
     </div>
   </lightning-card>
+  <template if:true={isModalOpen}>
+  <section role="dialog" tabindex="-1" aria-modal="false" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+    <div class="slds-modal__container">
+    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+      <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+    </svg>
+    <span class="slds-assistive-text">Cancel and close</span>
+    </button>
+    <div class="slds-modal__header">
+    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Buscar Endereço</h1>
+    </div>
+    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+        <div class="slds-grid slds-wrap slds-grid_vertical-align-end">
+            <div class="slds-col slds-large-size_1-of-2 slds-p-horizontal_x-small">
+              <lightning-input
+                label="CEP"
+                type="search"
+                onchange={handleCEP}
+                pattern="^\d{8}$"
+                message-when-pattern-mismatch="minimo de 8 caracteres numéricos"
+                max-length="8"
+                placeholder="Exemplo: 00000000"
+              ></lightning-input>
+            </div>
+            <div class="slds-col slds-large-size_1-of-2 slds-p-top_small">
+              <lightning-button
+                variant="brand"
+                label="Consultar"
+                title="Consultar"
+                onclick={consultarCEP}
+                class="slds-m-left_x-small"
+              ></lightning-button>
+            </div>
+          </div>
+          <div class="slds-grid slds-wrap">   
+              <div class="slds-col slds-large-size_4-of-12 slds-p-horizontal_x-small">
+                  <lightning-input
+                  name="logradouro"
+                  label="Rua"
+                  type="text"
+                  onchange={handleInputChange}
+                  value={endereco.logradouro}
+                ></lightning-input>
+              </div>
+              <div class="slds-col slds-large-size_2-of-12 slds-p-horizontal_x-small">
+                  <lightning-input
+                  name="numero"
+                  label="Número"
+                  type="text"
+                  onchange={handleInputChange}
+                  value={endereco.numero}
+                ></lightning-input>
+              </div>
+              <div class="slds-col slds-large-size_6-of-12 slds-p-horizontal_x-small">
+                  <lightning-input
+                  name="bairro"
+                  label="Bairro"
+                  type="text"
+                  onchange={handleInputChange}
+                  value={endereco.bairro}
+                ></lightning-input>
+              </div>
+              <div class="slds-col slds-large-size_6-of-12 slds-p-horizontal_x-small">
+                  <lightning-input
+                  name="localidade"
+                  label="Cidade"
+                  type="text"
+                  onchange={handleInputChange}
+                  value={endereco.localidade}
+                ></lightning-input>
+              </div>
+              <div class="slds-col slds-large-size_6-of-12 slds-p-horizontal_x-small">
+                  <lightning-input
+                  name="uf"
+                  label="Estado"
+                  type="text"
+                  onchange={handleInputChange}
+                  value={endereco.uf}
+                ></lightning-input>
+              </div>
+            </div>
+    </div>
+    <div class="slds-modal__footer">
+    <button class="slds-button slds-button_neutral" onclick={closeModal} aria-label="Cancel and close">Cancelar</button>
+    <button class="slds-button slds-button_brand" onclick={atualizarEnderecoConta}>Salvar</button>
+    </div>
+    </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>
 </template>

@@ -73,4 +73,27 @@ export default class ConsultaCEPModal extends LightningModal {
     handleOkay() {
         this.close('okay');
     }
+
+    handleCEPChange(event) {
+        // Remove todos os caracteres não numéricos do valor do CEP
+        let rawValue = event.target.value.replace(/\D/g, '');
+
+        // Verifica se o CEP tem 8 dígitos
+        if (rawValue.length === 8) {
+            // Formata o CEP com a máscara #####-###
+            this.cepValue = `${rawValue.substring(0, 5)}-${rawValue.substring(5)}`;
+        } else {
+            // Se o CEP não tem 8 dígitos, mantenha apenas os números
+            this.cepValue = rawValue;
+        }
+    }
+
+    handlePhoneInputMask(event) {
+        const x = event.target.value
+            .replace(/\D+/g, '')
+            .match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+
+        event.target.value = 
+            !x[2] ? x[1] : `(${x[1]}) ${x[2]}` + (x[3] ? `-${x[3]}` : ``);
+    }
 }
