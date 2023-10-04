@@ -1,9 +1,10 @@
 public with sharing class CPFUtil {
+  private final String MENSAGEM_FORMATO_INVALIDO = 'Formato inválido. O CPF deve conter 11 dígitos numéricos, sem pontos, traços ou caracteres especiais.';
+  private final String MENSAGEM_SEQUENCIA_INVALIDA = 'CPF inválido. CPFs com números em sequência ou repetidos não são aceitos.';
+  private final String MENSAGEM_CPF_INVALIDO = 'CPF inválido. O CPF deve conter 11 dígitos numéricos válidos.';
+  
   public String cpf { get; private set; }
   public String mensagem { get; private set; }
-  static final String MENSAGEM_FORMATO_INVALIDO = 'Formato inválido. O CPF deve conter 11 dígitos numéricos, sem pontos, traços ou caracteres especiais.';
-  static final String MENSAGEM_SEQUENCIA_INVALIDA = 'CPF inválido. CPFs com números em sequência ou repetidos não são aceitos.';
-  static final String MENSAGEM_CPF_INVALIDO = 'CPF inválido. O CPF deve conter 11 dígitos numéricos válidos.';
 
   public CPFUtil() {
   }
